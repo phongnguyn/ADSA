@@ -14,7 +14,7 @@ def toBase(n:int, b:int)->str:
     res = ""
     while n != 0:
         res = str(n % b) + res
-        n=int(n/b)
+        n=n//b
     return res
 
 def add(x,y):
