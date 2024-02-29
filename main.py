@@ -28,10 +28,10 @@ def karatsuba(x,y):
     n = max(len(str(x)), len(str(y)))
     m = ceil(n/2)   #Cast n into a float because n might lie outside the representable range of integers.
 
-    x_H  = floor(x / 10**m)
+    x_H  = x // 10**m
     x_L = x % (10**m)
 
-    y_H = floor(y / 10**m)
+    y_H = y // 10**m
     y_L = y % (10**m)
 
     #recursive steps
