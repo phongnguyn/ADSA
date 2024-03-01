@@ -18,8 +18,23 @@ def toBase(n:int, b:int)->str:
     return res
 
 def add(x,y):
-    return x + y
-
+    i1 = len(x) - 1
+    i2 = len(y) - 1
+    carry = 0
+    res = ''
+    while i1 >=0 or i2>=0:
+        temp = carry
+        if i1 >= 0: 
+            temp += int(x[i1])
+            i1 -=1
+        if i2 >=0:
+            temp += int(y[i2])
+            i2-=1
+        res = str(temp % int(B)) + res
+        carry = temp // int(B)
+    if carry > 0:
+        res = '1' +res
+    return res
 def karatsuba(x,y):
     #base case
     if x < 10 and y < 10: # in other words, if x and y are single digits
@@ -41,7 +56,10 @@ def karatsuba(x,y):
 
     return int(a*(10**(m*2)) + e*(10**m) + d)
 
-sum=add(toBase10(I1,int(B)),toBase10(I2,int(B)))
+def divide(x,y): 
+    return x // y
 
+sum=add(I1,I2)
+q = divide(toBase10(I1,int(B)),toBase10(I2,int(B)))
 mul = karatsuba(toBase10(I1,int(B)),toBase10(I2,int(B)))
-print(toBase(sum,int(B)),toBase(mul,int(B)),"0")
+print(sum,toBase(mul,int(B)),toBase(q,int(B)))
