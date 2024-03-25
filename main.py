@@ -137,32 +137,21 @@ class AVLTree(object):
     def preOrder(self, root):
         if not root:
             return
-        print("{0} ".format(root.key), end="")
+        print(root.key, end=" ")
         self.preOrder(root.left)
         self.preOrder(root.right)
 
-    # Print the tree
-    def printHelper(self, currPtr, indent, last):
-        if currPtr != None:
-            sys.stdout.write(indent)
-            if last:
-                sys.stdout.write("R----")
-                indent += "     "
-            else:
-                sys.stdout.write("L----")
-                indent += "|    "
-            print(currPtr.key)
-            self.printHelper(currPtr.left, indent, False)
-            self.printHelper(currPtr.right, indent, True)
-
-
 myTree = AVLTree()
 root = None
-nums = [33, 13, 52, 9, 21, 61, 8, 11]
-for num in nums:
-    root = myTree.insert_node(root, num)
-myTree.printHelper(root, "", True)
-key = 13
-root = myTree.delete_node(root, key)
-print("After Deletion: ")
-myTree.printHelper(root, "", True)
+moves = input().split(' ')
+lastM = moves[-1]
+moves.pop(-1)
+for move in moves:
+    if (move[0] == 'D'):
+        root = myTree.delete_node(root, int(move[1:]))
+    elif (move[0] == 'A'):
+        root = myTree.insert_node(root, int(move[1:]))
+
+if (root == None): print('EMPTY')
+else: myTree.preOrder(root)
+print()
